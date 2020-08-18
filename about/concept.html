@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Concepts | Streamy</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    
+    <meta name="description" content="Build powerful reactive, concurrent, and distributed applications stream applications.">
+    <link rel="preload" href="/assets/css/0.styles.abfd12c2.css" as="style"><link rel="preload" href="/assets/js/app.5ccc6b9e.js" as="script"><link rel="preload" href="/assets/js/2.e89ff0bb.js" as="script"><link rel="preload" href="/assets/js/7.e2428537.js" as="script"><link rel="prefetch" href="/assets/js/10.0fe665e0.js"><link rel="prefetch" href="/assets/js/11.2f043ec3.js"><link rel="prefetch" href="/assets/js/12.5fbda891.js"><link rel="prefetch" href="/assets/js/13.ca442f68.js"><link rel="prefetch" href="/assets/js/14.d3414f22.js"><link rel="prefetch" href="/assets/js/15.f4939578.js"><link rel="prefetch" href="/assets/js/3.c15b449a.js"><link rel="prefetch" href="/assets/js/4.3b6a7e49.js"><link rel="prefetch" href="/assets/js/5.b369572b.js"><link rel="prefetch" href="/assets/js/6.5836cde5.js"><link rel="prefetch" href="/assets/js/8.e32ba19c.js"><link rel="prefetch" href="/assets/js/9.841fa66f.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.abfd12c2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Streamy</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/about/" class="nav-link router-link-active">
+  About
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="/develop/" class="nav-link">
+  Develop
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/about/" class="nav-link router-link-active">
+  About
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="/develop/" class="nav-link">
+  Develop
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>About</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/about/" aria-current="page" class="sidebar-link">What is streamy ?</a></li><li><a href="/about/concept.html" aria-current="page" class="active sidebar-link">Concepts</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/about/concept.html#transformer" class="sidebar-link">Transformer</a></li><li class="sidebar-sub-header"><a href="/about/concept.html#json" class="sidebar-link">Json</a></li><li class="sidebar-sub-header"><a href="/about/concept.html#parser" class="sidebar-link">Parser</a></li><li class="sidebar-sub-header"><a href="/about/concept.html#printer" class="sidebar-link">Printer</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="concepts"><a href="#concepts" class="header-anchor">#</a> Concepts</h1> <h2 id="transformer"><a href="#transformer" class="header-anchor">#</a> Transformer</h2> <h2 id="json"><a href="#json" class="header-anchor">#</a> Json</h2> <p>To manipulate Json, Streamy proposes its own Json AST because Json is the base of everything in Streamy.</p> <h3 id="json-ast"><a href="#json-ast" class="header-anchor">#</a> Json AST</h3> <p>The base type in Streamy is MaybeJson, and has several subtypes representing different Json types :</p> <ul><li>JsUndefined : An undefined Json value. It is useful to avoid Option[Json]  pattern in some case and for performance reason.</li> <li>JsDefined : A defined Json value.
+<ul><li>JsObject : A Json object, represented as a Map.</li> <li>JsArray : A Json array, represented as an Array.</li> <li>JsString : A Json String.</li> <li>JsBoolean: A Json Boolean.</li> <li>JsNull: A Json Null.</li> <li>JsBytes : A Json Bytes.</li> <li>JsNumber : A Json number, represented has several subtypes.
+<ul><li>JsInt : A Json Int.</li> <li>JsLong : A Json Long.</li> <li>JsFloat : A Json Float.</li> <li>JsDouble: A Json Double.</li> <li>JsBigDecimal: A Json Big Decimal.</li></ul></li></ul></li></ul> <h3 id="reading-and-writing-json"><a href="#reading-and-writing-json" class="header-anchor">#</a> Reading and writing json</h3> <p>The <code>io.techcode.streamy.util.json._</code>  package has several methods for reading and writing json.</p> <h4 id="reading-from-bytestring"><a href="#reading-from-bytestring" class="header-anchor">#</a> Reading from ByteString</h4> <p>Parse a ByteString input into a Json value and will throw a ParseException in case of failure.</p> <div class="language-scala extra-class"><pre class="language-scala"><code><span class="token keyword">val</span> result<span class="token operator">:</span> Json <span class="token operator">=</span> Json<span class="token punctuation">.</span>parseByteStringUnsafe<span class="token punctuation">(</span>ByteString<span class="token punctuation">(</span><span class="token triple-quoted-string string">&quot;&quot;&quot;
+{
+  &quot;foo&quot;: &quot;bar&quot;
+}
+&quot;&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><p>Parse a ByteString input into a Json value and will return an Either[Throwable, Json] value.</p> <div class="language-scala extra-class"><pre class="language-scala"><code><span class="token keyword">val</span> result<span class="token operator">:</span> Either<span class="token punctuation">[</span>Throwable<span class="token punctuation">,</span> Json<span class="token punctuation">]</span> <span class="token operator">=</span> Json<span class="token punctuation">.</span>parseByteString<span class="token punctuation">(</span>ByteString<span class="token punctuation">(</span><span class="token triple-quoted-string string">&quot;&quot;&quot;
+{
+  &quot;foo&quot;: &quot;bar&quot;
+}
+&quot;&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><h4 id="reading-from-string"><a href="#reading-from-string" class="header-anchor">#</a> Reading from String</h4> <p>Parse a String input into a Json value and will throw a ParseException in case of failure.</p> <div class="language-scala extra-class"><pre class="language-scala"><code><span class="token keyword">val</span> result<span class="token operator">:</span> Json <span class="token operator">=</span> Json<span class="token punctuation">.</span>parseStringUnsafe<span class="token punctuation">(</span><span class="token triple-quoted-string string">&quot;&quot;&quot;
+{
+  &quot;foo&quot;: &quot;bar&quot;
+}
+&quot;&quot;&quot;</span><span class="token punctuation">)</span>
+</code></pre></div><p>Parse a ByteString input into a Json value and will return an Either[Throwable, Json] value.</p> <div class="language-scala extra-class"><pre class="language-scala"><code><span class="token keyword">val</span> result<span class="token operator">:</span> Either<span class="token punctuation">[</span>Throwable<span class="token punctuation">,</span> Json<span class="token punctuation">]</span> <span class="token operator">=</span> Json<span class="token punctuation">.</span>parseString<span class="token punctuation">(</span><span class="token triple-quoted-string string">&quot;&quot;&quot;
+{
+  &quot;foo&quot;: &quot;bar&quot;
+}
+&quot;&quot;&quot;</span><span class="token punctuation">)</span>
+</code></pre></div><h4 id="reading-from-bytes"><a href="#reading-from-bytes" class="header-anchor">#</a> Reading from Bytes</h4> <p>Parse an Array[Byte] input into a Json value and will throw a ParseException in case of failure.</p> <div class="language-scala extra-class"><pre class="language-scala"><code><span class="token keyword">val</span> result<span class="token operator">:</span> Json <span class="token operator">=</span> Json<span class="token punctuation">.</span>parseBytesUnsafe<span class="token punctuation">(</span><span class="token triple-quoted-string string">&quot;&quot;&quot;
+{
+  &quot;foo&quot;: &quot;bar&quot;
+}
+&quot;&quot;&quot;</span><span class="token punctuation">.</span>getBytes<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><p>Parse a ByteString input into a Json value and will return an Either[Throwable, Json] value.</p> <div class="language-scala extra-class"><pre class="language-scala"><code><span class="token keyword">val</span> result<span class="token operator">:</span> Either<span class="token punctuation">[</span>Throwable<span class="token punctuation">,</span> Json<span class="token punctuation">]</span> <span class="token operator">=</span> Json<span class="token punctuation">.</span>parseBytes<span class="token punctuation">(</span><span class="token triple-quoted-string string">&quot;&quot;&quot;
+{
+  &quot;foo&quot;: &quot;bar&quot;
+}
+&quot;&quot;&quot;</span><span class="token punctuation">.</span>getBytes<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><h4 id="writing-to-bytestring"><a href="#writing-to-bytestring" class="header-anchor">#</a> Writing to ByteString</h4> <p>Print a Json input into a ByteString value and will throw a PrintException in case of failure.</p> <div class="language-scala extra-class"><pre class="language-scala"><code><span class="token keyword">val</span> result<span class="token operator">:</span> ByteString <span class="token operator">=</span> Json<span class="token punctuation">.</span>printByteStringUnsafe<span class="token punctuation">(</span>Json<span class="token punctuation">.</span>obj<span class="token punctuation">(</span><span class="token string">&quot;foo&quot;</span> <span class="token operator">-&gt;</span> <span class="token string">&quot;bar&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><p>Print a Json input into a ByteString and will return aEither[Throwable, ByteString] value.</p> <div class="language-scala extra-class"><pre class="language-scala"><code><span class="token keyword">val</span> result<span class="token operator">:</span> Either<span class="token punctuation">[</span>Throwable<span class="token punctuation">,</span> ByteString<span class="token punctuation">]</span> <span class="token operator">=</span> Json<span class="token punctuation">.</span>printByteString<span class="token punctuation">(</span>Json<span class="token punctuation">.</span>obj<span class="token punctuation">(</span>
+  <span class="token string">&quot;foo&quot;</span> <span class="token operator">-&gt;</span> <span class="token string">&quot;bar&quot;</span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><h4 id="writing-to-string"><a href="#writing-to-string" class="header-anchor">#</a> Writing to String</h4> <p>Print a Json input into a String value and will throw a PrintException in case of failure.</p> <div class="language-scala extra-class"><pre class="language-scala"><code><span class="token keyword">val</span> result<span class="token operator">:</span> <span class="token builtin">String</span> <span class="token operator">=</span> Json<span class="token punctuation">.</span>printStringUnsafe<span class="token punctuation">(</span>Json<span class="token punctuation">.</span>obj<span class="token punctuation">(</span><span class="token string">&quot;foo&quot;</span> <span class="token operator">-&gt;</span> <span class="token string">&quot;bar&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><p>Print a Json input into a String and will return aEither[Throwable, String] value.</p> <div class="language-scala extra-class"><pre class="language-scala"><code><span class="token keyword">val</span> result<span class="token operator">:</span> Either<span class="token punctuation">[</span>Throwable<span class="token punctuation">,</span> <span class="token builtin">String</span><span class="token punctuation">]</span> <span class="token operator">=</span> Json<span class="token punctuation">.</span>printString<span class="token punctuation">(</span>Json<span class="token punctuation">.</span>obj<span class="token punctuation">(</span>
+  <span class="token string">&quot;foo&quot;</span> <span class="token operator">-&gt;</span> <span class="token string">&quot;bar&quot;</span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><h3 id="manipulating-json-ast"><a href="#manipulating-json-ast" class="header-anchor">#</a> Manipulating Json AST</h3> <h4 id="evaluatea"><a href="#evaluatea" class="header-anchor">#</a> Evaluatea</h4> <h4 id="patch"><a href="#patch" class="header-anchor">#</a> Patch</h4> <h2 id="parser"><a href="#parser" class="header-anchor">#</a> Parser</h2> <h2 id="printer"><a href="#printer" class="header-anchor">#</a> Printer</h2></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/about/" class="prev router-link-active">
+        What is streamy ?
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.5ccc6b9e.js" defer></script><script src="/assets/js/2.e89ff0bb.js" defer></script><script src="/assets/js/7.e2428537.js" defer></script>
+  </body>
+</html>

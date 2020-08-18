@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Use a plugin | Streamy</title>
+    <meta name="generator" content="VuePress 1.5.3">
+    
+    <meta name="description" content="Build powerful reactive, concurrent, and distributed applications stream applications.">
+    <link rel="preload" href="/assets/css/0.styles.abfd12c2.css" as="style"><link rel="preload" href="/assets/js/app.5ccc6b9e.js" as="script"><link rel="preload" href="/assets/js/2.e89ff0bb.js" as="script"><link rel="preload" href="/assets/js/12.5fbda891.js" as="script"><link rel="prefetch" href="/assets/js/10.0fe665e0.js"><link rel="prefetch" href="/assets/js/11.2f043ec3.js"><link rel="prefetch" href="/assets/js/13.ca442f68.js"><link rel="prefetch" href="/assets/js/14.d3414f22.js"><link rel="prefetch" href="/assets/js/15.f4939578.js"><link rel="prefetch" href="/assets/js/3.c15b449a.js"><link rel="prefetch" href="/assets/js/4.3b6a7e49.js"><link rel="prefetch" href="/assets/js/5.b369572b.js"><link rel="prefetch" href="/assets/js/6.5836cde5.js"><link rel="prefetch" href="/assets/js/7.e2428537.js"><link rel="prefetch" href="/assets/js/8.e32ba19c.js"><link rel="prefetch" href="/assets/js/9.841fa66f.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.abfd12c2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Streamy</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/about/" class="nav-link">
+  About
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="/develop/" class="nav-link router-link-active">
+  Develop
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/about/" class="nav-link">
+  About
+</a></div><div class="nav-item"><a href="/guide/" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="/develop/" class="nav-link router-link-active">
+  Develop
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Develop</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/develop/" aria-current="page" class="sidebar-link">Introduction</a></li><li><a href="/develop/create-a-plugin.html" class="sidebar-link">Create a plugin</a></li><li><a href="/develop/use-a-plugin.html" aria-current="page" class="active sidebar-link">Use a plugin</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/develop/use-a-plugin.html#date" class="sidebar-link">Date</a></li><li class="sidebar-sub-header"><a href="/develop/use-a-plugin.html#elasticsearch" class="sidebar-link">Elasticsearch</a></li><li class="sidebar-sub-header"><a href="/develop/use-a-plugin.html#fingerprint" class="sidebar-link">Fingerprint</a></li><li class="sidebar-sub-header"><a href="/develop/use-a-plugin.html#graphite" class="sidebar-link">Graphite</a></li><li class="sidebar-sub-header"><a href="/develop/use-a-plugin.html#json" class="sidebar-link">Json</a></li><li class="sidebar-sub-header"><a href="/develop/use-a-plugin.html#metric" class="sidebar-link">Metric</a></li><li class="sidebar-sub-header"><a href="/develop/use-a-plugin.html#mutate" class="sidebar-link">Mutate</a></li><li class="sidebar-sub-header"><a href="/develop/use-a-plugin.html#protobuf" class="sidebar-link">Protobuf</a></li><li class="sidebar-sub-header"><a href="/develop/use-a-plugin.html#riemann" class="sidebar-link">Riemann</a></li><li class="sidebar-sub-header"><a href="/develop/use-a-plugin.html#syslog" class="sidebar-link">Syslog</a></li><li class="sidebar-sub-header"><a href="/develop/use-a-plugin.html#tcp" class="sidebar-link">Tcp</a></li><li class="sidebar-sub-header"><a href="/develop/use-a-plugin.html#xymon" class="sidebar-link">Xymon</a></li></ul></li><li><a href="/develop/recipe.html" class="sidebar-link">Recipe</a></li><li><a href="/develop/integration.html" class="sidebar-link">Integration</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="use-a-plugin"><a href="#use-a-plugin" class="header-anchor">#</a> Use a plugin</h1> <h2 id="date"><a href="#date" class="header-anchor">#</a> Date</h2> <p>The Streamy Date plugin provides components to manipulate date.</p> <h2 id="elasticsearch"><a href="#elasticsearch" class="header-anchor">#</a> Elasticsearch</h2> <p>The Streamy Elasticsearch plugin provides components integration for Elasticsearch.</p> <h2 id="fingerprint"><a href="#fingerprint" class="header-anchor">#</a> Fingerprint</h2> <p>The Streamy Fingerprint plugin provides components to generate fingerprint.</p> <h2 id="graphite"><a href="#graphite" class="header-anchor">#</a> Graphite</h2> <p>The Streamy Graphite plugin provides component integration for Graphite.</p> <h2 id="json"><a href="#json" class="header-anchor">#</a> Json</h2> <p>The Streamy Json plugin provides components to manipulate json.</p> <h2 id="metric"><a href="#metric" class="header-anchor">#</a> Metric</h2> <p>The Streamy Metric plugin provides components to generate metrics.</p> <h2 id="mutate"><a href="#mutate" class="header-anchor">#</a> Mutate</h2> <p>The Streamy Mutate plugin provides component to easily mutate events.</p> <h2 id="protobuf"><a href="#protobuf" class="header-anchor">#</a> Protobuf</h2> <p>The Streamy Protobuf plugin provides component integration for Protobuf.</p> <h2 id="riemann"><a href="#riemann" class="header-anchor">#</a> Riemann</h2> <p>The Streamy Riemann plugin provides components integration for Riemann.</p> <h2 id="syslog"><a href="#syslog" class="header-anchor">#</a> Syslog</h2> <p>The Streamy Syslog plugin provides component integration for Syslog.</p> <h2 id="tcp"><a href="#tcp" class="header-anchor">#</a> Tcp</h2> <p>The Streamy Tcp plugin provides component integration for Tcp.</p> <h2 id="xymon"><a href="#xymon" class="header-anchor">#</a> Xymon</h2> <p>The Streamy Xymon plugin provides component integration for Xymon.</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/develop/create-a-plugin.html" class="prev">
+        Create a plugin
+      </a></span> <span class="next"><a href="/develop/recipe.html">
+        Recipe
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.5ccc6b9e.js" defer></script><script src="/assets/js/2.e89ff0bb.js" defer></script><script src="/assets/js/12.5fbda891.js" defer></script>
+  </body>
+</html>
