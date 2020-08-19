@@ -4,11 +4,17 @@
 
 ### Starting
 
-TODO
+#### Flags
+
+| Flag        | Description                 |
+| ----------- | --------------------------- |
+| `--dry-run` | Run streamy in dry-run mode |
+
+#### Daemonizing
+
+Streamy does not directly offer a way to daemonize the Streamy process. It's recommend that you use a utility like [Systemd](https://systemd.io/) to daemonize and manage your processes. Streamy provides a [streamy-core.service](https://github.com/amannocci/streamy/blob/master/core/src/templates/systemloader/systemd/start-template) file for Systemd.
 
 ### Stopping
-
-TODO
 
 #### Graceful Shutdown
 
@@ -29,8 +35,11 @@ or designing an architecture that handle such cases by reprocessing.
 
 ## Monitoring
 
-TODO
+Streamy provide some internal events to monitor it self.  
+They can be catch using the [Akka EventBus](https://doc.akka.io/docs/akka/current/event-bus.html#classic-event-bus) and then use in any way.  
+For example, you can aggregate events and deduce [garbage collector pressure](https://github.com/amannocci/streamy/blob/master/core/src/main/scala/io/techcode/streamy/util/monitor/GarbageCollectorMonitor.scala).
+
 
 ## Tuning
 
-Streamy is written in Scala and therefore rely the JVM runtime. By default, Streamy will attempt take full advantage of all system resources without any adjustments. Nevertheless in some case it's recommend to set heap size and dispatcher size.
+Streamy is written in Scala and therefore rely on the JVM runtime. By default, Streamy will attempt take full advantage of all system resources without any adjustments. Nevertheless, in some case it's recommend to set heap size and dispatcher size.

@@ -1,5 +1,11 @@
 # Concepts
 
+## Source
+
+## Flow
+
+## Sink
+
 ## Transformer
 
 ## Json
@@ -127,10 +133,118 @@ val result: Either[Throwable, String] = Json.printString(Json.obj(
 
 ### Manipulating Json AST
 
-#### Evaluatea
+#### Evaluate
+
+To read a value from a Json AST, Streamy provides a implementation of the [RFC-6901](https://tools.ietf.org/html/rfc6901).  
+To simplify, we will use the following json object.
+
+```scala
+import io.techcode.streamy.util.json._
+
+# Object example
+val json = Json.obj(
+  "string" -> "string"
+  "int" -> 1024,
+  "long" -> 1024L,
+  "float" -> 1.0F,
+  "double" -> 1.0D,
+  "big_decimal" -> BigDecimal("1"),
+  "boolean" -> true,
+  "bytes" -> ByteString("bytes"),
+  "object" -> Json.obj(
+    "string" -> "obj_string"
+  ),
+  "array" -> Json.arr(
+    "arr_string"
+  )
+)
+```
+
+You can attempt to read any value at any level.  
+The `evaluate` method will returns either a Json value or a JsUndefined.
+
+```scala
+json.evaluate(Root / "string")
+// JsString("string")
+
+json.evaluate(Root / "unknown")
+// JsUndefined
+```
+
+You can read json values as valid primitive. Be careful that you can't cast any json value to any primitive and a cast exception will be raised in such cases.
+
+```scala
+// Evaluate a field as String value
+json.evaluate(Root / "string").get[String]
+// string
+
+// Evaluate a field as Int value
+json.evaluate(Root / "int").get[Int]
+// 1024
+
+// Evaluate a field as Long value
+json.evaluate(Root / "long").get[Long]
+// 1024
+
+// Evaluate a field as Float value
+json.evaluate(Root / "float").get[Float]
+// 1.0
+
+// Evaluate a field as Double value
+json.evaluate(Root / "double").get[Double]
+// 1.0
+
+// Evaluate a field as BigDecimal value
+json.evaluate(Root / "big_decimal").get[BigDecimal]
+// 1
+
+// Evaluate a field as Boolean value
+json.evaluate(Root / "boolean").get[Boolean]
+// true
+
+// Evaluate a field as Bytes value.
+json.evaluate(Root / "bytes").get[ByteString]
+// ByteString("bytes")
+
+// Evaluate a field as a non valid value.
+json.evaluate(Root / "bytes").get[String]
+// throw ClassCastException
+```
+
+You can read json values as valid json primitives.
+
+```scala
+// Evaluate a field as JsNumber value
+json.evaluate(Root / "int").get[JsNumber]
+
+// Evaluate a field as Json and ensure that the value isn't empty.
+json.evaluate(Root / "object").get[Json]
+
+// Evaluate a field as JsObject value.
+json.evaluate(Root / "object").get[JsObject]
+json.evaluate(Root / "object" / "string").get[String]
+
+// Evaluate a field as JsArray value.
+json.evaluate(Root / "array").get[JsArray]
+json.evaluate(Root / "array" / 0).get[String]
+
+// Evaluate a field or default
+json.evaluate(Root / "unknown").getOrElse[String]("default")
+
+// Evaluate a field and transform
+json.evaluate(Root / "string").map(_ => "Hello world !")
+
+// Evaluate a field and maybe transform
+json.evaluate(Root / "string").flatMap(_ => JsUndefined)
+
+// Evaluate a field and do something only if exist
+json.evaluate(Root / "string").ifExist(println)
+```
 
 #### Patch
 
 ## Parser
 
 ## Printer
+
+## StreamEvent

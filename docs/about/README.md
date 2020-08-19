@@ -28,6 +28,12 @@ custom plugins.
 
 ### Logstash
 
+TODO
+
 ### FluendD
 
+TODO
+
 ### Rsyslog
+
+TODO
