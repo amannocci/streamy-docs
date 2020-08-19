@@ -3,6 +3,7 @@ module.exports = {
   description: 'Build powerful reactive, concurrent, and distributed applications stream applications.',
   base: '/streamy-docs/',
   themeConfig: {
+    sidebarDepth: 2,
     nav: [
       { text: 'Home', link: '/' },
       { text: 'About', link: '/about/' },
