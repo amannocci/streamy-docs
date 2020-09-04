@@ -7,7 +7,7 @@
     <meta name="generator" content="VuePress 1.5.4">
     
     <meta name="description" content="Build powerful reactive, concurrent, and distributed applications stream applications.">
-    <link rel="preload" href="/streamy-docs/assets/css/0.styles.237c77a6.css" as="style"><link rel="preload" href="/streamy-docs/assets/js/app.4f47acfe.js" as="script"><link rel="preload" href="/streamy-docs/assets/js/2.230c6d05.js" as="script"><link rel="preload" href="/streamy-docs/assets/js/7.544db250.js" as="script"><link rel="prefetch" href="/streamy-docs/assets/js/10.c5b59c6e.js"><link rel="prefetch" href="/streamy-docs/assets/js/11.90c0b025.js"><link rel="prefetch" href="/streamy-docs/assets/js/12.470d57d1.js"><link rel="prefetch" href="/streamy-docs/assets/js/13.d97f68b4.js"><link rel="prefetch" href="/streamy-docs/assets/js/14.8a88fd06.js"><link rel="prefetch" href="/streamy-docs/assets/js/15.2f09cdc5.js"><link rel="prefetch" href="/streamy-docs/assets/js/3.c15b449a.js"><link rel="prefetch" href="/streamy-docs/assets/js/4.5ed19beb.js"><link rel="prefetch" href="/streamy-docs/assets/js/5.92efac1b.js"><link rel="prefetch" href="/streamy-docs/assets/js/6.d6e8d9e4.js"><link rel="prefetch" href="/streamy-docs/assets/js/8.2c468ea5.js"><link rel="prefetch" href="/streamy-docs/assets/js/9.4b0ef5e0.js">
+    <link rel="preload" href="/streamy-docs/assets/css/0.styles.237c77a6.css" as="style"><link rel="preload" href="/streamy-docs/assets/js/app.3526e0fa.js" as="script"><link rel="preload" href="/streamy-docs/assets/js/2.230c6d05.js" as="script"><link rel="preload" href="/streamy-docs/assets/js/7.6b5c09db.js" as="script"><link rel="prefetch" href="/streamy-docs/assets/js/10.c5b59c6e.js"><link rel="prefetch" href="/streamy-docs/assets/js/11.90c0b025.js"><link rel="prefetch" href="/streamy-docs/assets/js/12.470d57d1.js"><link rel="prefetch" href="/streamy-docs/assets/js/13.d97f68b4.js"><link rel="prefetch" href="/streamy-docs/assets/js/14.8a88fd06.js"><link rel="prefetch" href="/streamy-docs/assets/js/15.ec29931e.js"><link rel="prefetch" href="/streamy-docs/assets/js/3.c15b449a.js"><link rel="prefetch" href="/streamy-docs/assets/js/4.5ed19beb.js"><link rel="prefetch" href="/streamy-docs/assets/js/5.92efac1b.js"><link rel="prefetch" href="/streamy-docs/assets/js/6.9a88f371.js"><link rel="prefetch" href="/streamy-docs/assets/js/8.2c468ea5.js"><link rel="prefetch" href="/streamy-docs/assets/js/9.4b0ef5e0.js">
     <link rel="stylesheet" href="/streamy-docs/assets/css/0.styles.237c77a6.css">
   </head>
   <body>
@@ -73,7 +73,7 @@ To simplify, we will use the following json object.</p> <div class="language-sca
 
 # Object example
 <span class="token keyword">val</span> json <span class="token operator">=</span> Json<span class="token punctuation">.</span>obj<span class="token punctuation">(</span>
-  <span class="token string">&quot;string&quot;</span> <span class="token operator">-&gt;</span> <span class="token string">&quot;string&quot;</span>
+  <span class="token string">&quot;string&quot;</span> <span class="token operator">-&gt;</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span>
   <span class="token string">&quot;int&quot;</span> <span class="token operator">-&gt;</span> <span class="token number">1024</span><span class="token punctuation">,</span>
   <span class="token string">&quot;long&quot;</span> <span class="token operator">-&gt;</span> <span class="token number">1024L</span><span class="token punctuation">,</span>
   <span class="token string">&quot;float&quot;</span> <span class="token operator">-&gt;</span> <span class="token number">1.0F</span><span class="token punctuation">,</span>
@@ -154,11 +154,153 @@ json<span class="token punctuation">.</span>evaluate<span class="token punctuati
 
 <span class="token comment">// Evaluate a field and do something only if exist</span>
 json<span class="token punctuation">.</span>evaluate<span class="token punctuation">(</span>Root <span class="token operator">/</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span>ifExist<span class="token punctuation">(</span>println<span class="token punctuation">)</span>
-</code></pre></div><h4 id="patch"><a href="#patch" class="header-anchor">#</a> Patch</h4> <h2 id="parser"><a href="#parser" class="header-anchor">#</a> Parser</h2> <h2 id="printer"><a href="#printer" class="header-anchor">#</a> Printer</h2> <h2 id="streamevent"><a href="#streamevent" class="header-anchor">#</a> StreamEvent</h2></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+</code></pre></div><h4 id="patch"><a href="#patch" class="header-anchor">#</a> Patch</h4> <p>To patch a value from a Json AST, Streamy provides a implementation of the <a href="https://tools.ietf.org/html/rfc6902" target="_blank" rel="noopener noreferrer">RFC-6902<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>.
+This method create a new json ast for any operations and can be inefficient for large update.<br>
+To simplify, we will use the following json object.</p> <div class="language-scala extra-class"><pre class="language-scala"><code><span class="token keyword">import</span> <span class="token namespace">io<span class="token punctuation">.</span>techcode<span class="token punctuation">.</span>streamy<span class="token punctuation">.</span>util<span class="token punctuation">.</span>json<span class="token punctuation">.</span></span>_
+
+# Object example
+<span class="token keyword">val</span> json <span class="token operator">=</span> Json<span class="token punctuation">.</span>obj<span class="token punctuation">(</span>
+  <span class="token string">&quot;string&quot;</span> <span class="token operator">-&gt;</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;int&quot;</span> <span class="token operator">-&gt;</span> <span class="token number">1024</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;long&quot;</span> <span class="token operator">-&gt;</span> <span class="token number">1024L</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;float&quot;</span> <span class="token operator">-&gt;</span> <span class="token number">1.0F</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;double&quot;</span> <span class="token operator">-&gt;</span> <span class="token number">1.0D</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;big_decimal&quot;</span> <span class="token operator">-&gt;</span> BigDecimal<span class="token punctuation">(</span><span class="token string">&quot;1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;boolean&quot;</span> <span class="token operator">-&gt;</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;bytes&quot;</span> <span class="token operator">-&gt;</span> ByteString<span class="token punctuation">(</span><span class="token string">&quot;bytes&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;object&quot;</span> <span class="token operator">-&gt;</span> Json<span class="token punctuation">.</span>obj<span class="token punctuation">(</span>
+    <span class="token string">&quot;string&quot;</span> <span class="token operator">-&gt;</span> <span class="token string">&quot;obj_string&quot;</span>
+  <span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;array&quot;</span> <span class="token operator">-&gt;</span> Json<span class="token punctuation">.</span>arr<span class="token punctuation">(</span>
+    <span class="token string">&quot;arr_string&quot;</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+</code></pre></div><p>You can attempt to patch any value at any level.<br>
+The <code>patch</code> method will returns either a Json value result of the patch or a JsUndefined if the patch failed.</p> <div class="language-scala extra-class"><pre class="language-scala"><code>json<span class="token punctuation">.</span>patch<span class="token punctuation">(</span>Test<span class="token punctuation">(</span>Root <span class="token operator">/</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">// JsObject(...)</span>
+
+json<span class="token punctuation">.</span>patch<span class="token punctuation">(</span>Test<span class="token punctuation">(</span>Root <span class="token operator">/</span> <span class="token string">&quot;unknown&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">// JsUndefined</span>
+
+json<span class="token punctuation">.</span>patch<span class="token punctuation">(</span>Test<span class="token punctuation">(</span>Root <span class="token operator">/</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">// JsUndefined</span>
+</code></pre></div><p>You can add values at any level.</p> <div class="language-scala extra-class"><pre class="language-scala"><code>json<span class="token punctuation">.</span>patch<span class="token punctuation">(</span>
+  Add<span class="token punctuation">(</span>Root <span class="token operator">/</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;foobar&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  Add<span class="token punctuation">(</span>Root <span class="token operator">/</span> <span class="token string">&quot;object&quot;</span> <span class="token operator">/</span> <span class="token string">&quot;test&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;test&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  Add<span class="token punctuation">(</span>Root <span class="token operator">/</span> <span class="token string">&quot;array&quot;</span> <span class="token operator">/</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">&quot;test&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+<span class="token comment">// Json.obj(</span>
+<span class="token comment">//   &quot;string&quot; -&gt; &quot;foobar&quot;,</span>
+<span class="token comment">//   &quot;int&quot; -&gt; 1024,</span>
+<span class="token comment">//   &quot;long&quot; -&gt; 1024L,</span>
+<span class="token comment">//   &quot;float&quot; -&gt; 1.0F,</span>
+<span class="token comment">//   &quot;double&quot; -&gt; 1.0D,</span>
+<span class="token comment">//   &quot;big_decimal&quot; -&gt; BigDecimal(&quot;1&quot;),</span>
+<span class="token comment">//   &quot;boolean&quot; -&gt; true,</span>
+<span class="token comment">//   &quot;bytes&quot; -&gt; ByteString(&quot;bytes&quot;),</span>
+<span class="token comment">//   &quot;object&quot; -&gt; Json.obj(</span>
+<span class="token comment">//     &quot;string&quot; -&gt; &quot;obj_string&quot;,</span>
+<span class="token comment">//     &quot;test&quot; -&gt; &quot;test&quot;</span>
+<span class="token comment">//   ),</span>
+<span class="token comment">//   &quot;array&quot; -&gt; Json.arr(</span>
+<span class="token comment">//     &quot;test&quot;,</span>
+<span class="token comment">//     &quot;arr_string&quot;</span>
+<span class="token comment">//   )</span>
+<span class="token comment">// )</span>
+</code></pre></div><p>You can replace values at any level.</p> <div class="language-scala extra-class"><pre class="language-scala"><code>json<span class="token punctuation">.</span>patch<span class="token punctuation">(</span>
+  Replace<span class="token punctuation">(</span>Root <span class="token operator">/</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;foobar&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  Replace<span class="token punctuation">(</span>Root <span class="token operator">/</span> <span class="token string">&quot;object&quot;</span> <span class="token operator">/</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;test&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  Replace<span class="token punctuation">(</span>Root <span class="token operator">/</span> <span class="token string">&quot;array&quot;</span> <span class="token operator">/</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">&quot;test&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+<span class="token comment">// Json.obj(</span>
+<span class="token comment">//   &quot;string&quot; -&gt; &quot;foobar&quot;,</span>
+<span class="token comment">//   &quot;int&quot; -&gt; 1024,</span>
+<span class="token comment">//   &quot;long&quot; -&gt; 1024L,</span>
+<span class="token comment">//   &quot;float&quot; -&gt; 1.0F,</span>
+<span class="token comment">//   &quot;double&quot; -&gt; 1.0D,</span>
+<span class="token comment">//   &quot;big_decimal&quot; -&gt; BigDecimal(&quot;1&quot;),</span>
+<span class="token comment">//   &quot;boolean&quot; -&gt; true,</span>
+<span class="token comment">//   &quot;bytes&quot; -&gt; ByteString(&quot;bytes&quot;),</span>
+<span class="token comment">//   &quot;object&quot; -&gt; Json.obj(</span>
+<span class="token comment">//     &quot;string&quot; -&gt; &quot;test&quot;</span>
+<span class="token comment">//   ),</span>
+<span class="token comment">//   &quot;array&quot; -&gt; Json.arr(</span>
+<span class="token comment">//     &quot;test&quot;</span>
+<span class="token comment">//   )</span>
+<span class="token comment">// )</span>
+</code></pre></div><p>You can remove values at any level.</p> <div class="language-scala extra-class"><pre class="language-scala"><code>json<span class="token punctuation">.</span>patch<span class="token punctuation">(</span>
+  Remove<span class="token punctuation">(</span>Root <span class="token operator">/</span> <span class="token string">&quot;notExist&quot;</span><span class="token punctuation">,</span> mustExist <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  Remove<span class="token punctuation">(</span>Root <span class="token operator">/</span> <span class="token string">&quot;object&quot;</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  Remove<span class="token punctuation">(</span>Root <span class="token operator">/</span> <span class="token string">&quot;array&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+<span class="token comment">// Json.obj(</span>
+<span class="token comment">//   &quot;string&quot; -&gt; &quot;foobar&quot;,</span>
+<span class="token comment">//   &quot;int&quot; -&gt; 1024,</span>
+<span class="token comment">//   &quot;long&quot; -&gt; 1024L,</span>
+<span class="token comment">//   &quot;float&quot; -&gt; 1.0F,</span>
+<span class="token comment">//   &quot;double&quot; -&gt; 1.0D,</span>
+<span class="token comment">//   &quot;big_decimal&quot; -&gt; BigDecimal(&quot;1&quot;),</span>
+<span class="token comment">//   &quot;boolean&quot; -&gt; true,</span>
+<span class="token comment">//   &quot;bytes&quot; -&gt; ByteString(&quot;bytes&quot;)</span>
+<span class="token comment">// )</span>
+</code></pre></div><p>You can move values at any level.</p> <div class="language-scala extra-class"><pre class="language-scala"><code>json<span class="token punctuation">.</span>patch<span class="token punctuation">(</span>Move<span class="token punctuation">(</span>Root <span class="token operator">/</span> <span class="token string">&quot;object&quot;</span> <span class="token operator">/</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span> Root <span class="token operator">/</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">// Json.obj(</span>
+<span class="token comment">//   &quot;string&quot; -&gt; &quot;obj_string&quot;,</span>
+<span class="token comment">//   &quot;int&quot; -&gt; 1024,</span>
+<span class="token comment">//   &quot;long&quot; -&gt; 1024L,</span>
+<span class="token comment">//   &quot;float&quot; -&gt; 1.0F,</span>
+<span class="token comment">//   &quot;double&quot; -&gt; 1.0D,</span>
+<span class="token comment">//   &quot;big_decimal&quot; -&gt; BigDecimal(&quot;1&quot;),</span>
+<span class="token comment">//   &quot;boolean&quot; -&gt; true,</span>
+<span class="token comment">//   &quot;bytes&quot; -&gt; ByteString(&quot;bytes&quot;),</span>
+<span class="token comment">//   &quot;object&quot; -&gt; Json.obj(),</span>
+<span class="token comment">//   &quot;array&quot; -&gt; Json.arr(</span>
+<span class="token comment">//     &quot;arr_string&quot;</span>
+<span class="token comment">//   )</span>
+<span class="token comment">// )</span>
+</code></pre></div><h4 id="mutate"><a href="#mutate" class="header-anchor">#</a> Mutate</h4> <p>You can also mutate the Json AST by using <code>mutate</code> context.
+This method allow you to navigate at a given path and then mutate the resulting value.
+To simplify, we will use the following json object.</p> <div class="language-scala extra-class"><pre class="language-scala"><code><span class="token keyword">import</span> <span class="token namespace">io<span class="token punctuation">.</span>techcode<span class="token punctuation">.</span>streamy<span class="token punctuation">.</span>util<span class="token punctuation">.</span>json<span class="token punctuation">.</span></span>_
+
+# Object example
+<span class="token keyword">val</span> json <span class="token operator">=</span> Json<span class="token punctuation">.</span>obj<span class="token punctuation">(</span>
+  <span class="token string">&quot;string&quot;</span> <span class="token operator">-&gt;</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;int&quot;</span> <span class="token operator">-&gt;</span> <span class="token number">1024</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;long&quot;</span> <span class="token operator">-&gt;</span> <span class="token number">1024L</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;float&quot;</span> <span class="token operator">-&gt;</span> <span class="token number">1.0F</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;double&quot;</span> <span class="token operator">-&gt;</span> <span class="token number">1.0D</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;big_decimal&quot;</span> <span class="token operator">-&gt;</span> BigDecimal<span class="token punctuation">(</span><span class="token string">&quot;1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;boolean&quot;</span> <span class="token operator">-&gt;</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;bytes&quot;</span> <span class="token operator">-&gt;</span> ByteString<span class="token punctuation">(</span><span class="token string">&quot;bytes&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;object&quot;</span> <span class="token operator">-&gt;</span> Json<span class="token punctuation">.</span>obj<span class="token punctuation">(</span>
+    <span class="token string">&quot;string&quot;</span> <span class="token operator">-&gt;</span> <span class="token string">&quot;obj_string&quot;</span>
+  <span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;array&quot;</span> <span class="token operator">-&gt;</span> Json<span class="token punctuation">.</span>arr<span class="token punctuation">(</span>
+    <span class="token string">&quot;arr_string&quot;</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+</code></pre></div><p>You can mutate any value at any level.</p> <div class="language-scala extra-class"><pre class="language-scala"><code>json<span class="token punctuation">.</span>mutate<span class="token punctuation">[</span><span class="token builtin">Int</span><span class="token punctuation">]</span><span class="token punctuation">(</span>Root <span class="token operator">/</span> <span class="token string">&quot;int&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> ref <span class="token keyword">=&gt;</span> ref <span class="token operator">/</span> <span class="token number">2</span> <span class="token punctuation">}</span>
+<span class="token comment">// Json.obj(</span>
+<span class="token comment">//   &quot;string&quot; -&gt; &quot;string&quot;,</span>
+<span class="token comment">//   &quot;int&quot; -&gt; 512,</span>
+<span class="token comment">//   &quot;long&quot; -&gt; 1024L,</span>
+<span class="token comment">//   &quot;float&quot; -&gt; 1.0F,</span>
+<span class="token comment">//   &quot;double&quot; -&gt; 1.0D,</span>
+<span class="token comment">//   &quot;big_decimal&quot; -&gt; BigDecimal(&quot;1&quot;),</span>
+<span class="token comment">//   &quot;boolean&quot; -&gt; true,</span>
+<span class="token comment">//   &quot;bytes&quot; -&gt; ByteString(&quot;bytes&quot;),</span>
+<span class="token comment">//   &quot;object&quot; -&gt; Json.obj(</span>
+<span class="token comment">//     &quot;string&quot; -&gt; &quot;obj_string&quot;</span>
+<span class="token comment">//   ),</span>
+<span class="token comment">//   &quot;array&quot; -&gt; Json.arr(</span>
+<span class="token comment">//     &quot;arr_string&quot;</span>
+<span class="token comment">//   )</span>
+<span class="token comment">// )</span>
+</code></pre></div><h2 id="parser"><a href="#parser" class="header-anchor">#</a> Parser</h2> <h2 id="printer"><a href="#printer" class="header-anchor">#</a> Printer</h2> <h2 id="streamevent"><a href="#streamevent" class="header-anchor">#</a> StreamEvent</h2></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
       ←
       <a href="/streamy-docs/about/" class="prev router-link-active">
         What is streamy ?
       </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/streamy-docs/assets/js/app.4f47acfe.js" defer></script><script src="/streamy-docs/assets/js/2.230c6d05.js" defer></script><script src="/streamy-docs/assets/js/7.544db250.js" defer></script>
+    <script src="/streamy-docs/assets/js/app.3526e0fa.js" defer></script><script src="/streamy-docs/assets/js/2.230c6d05.js" defer></script><script src="/streamy-docs/assets/js/7.6b5c09db.js" defer></script>
   </body>
 </html>
