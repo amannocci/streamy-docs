@@ -144,7 +144,7 @@ import io.techcode.streamy.util.json._
 
 # Object example
 val json = Json.obj(
-  "string" -> "string"
+  "string" -> "string",
   "int" -> 1024,
   "long" -> 1024L,
   "float" -> 1.0F,
@@ -243,6 +243,190 @@ json.evaluate(Root / "string").ifExist(println)
 ```
 
 #### Patch
+
+To patch a value from a Json AST, Streamy provides a implementation of the [RFC-6902](https://tools.ietf.org/html/rfc6902).
+This method create a new json ast for any operations and can be inefficient for large update.  
+To simplify, we will use the following json object.
+
+```scala
+import io.techcode.streamy.util.json._
+
+# Object example
+val json = Json.obj(
+  "string" -> "string",
+  "int" -> 1024,
+  "long" -> 1024L,
+  "float" -> 1.0F,
+  "double" -> 1.0D,
+  "big_decimal" -> BigDecimal("1"),
+  "boolean" -> true,
+  "bytes" -> ByteString("bytes"),
+  "object" -> Json.obj(
+    "string" -> "obj_string"
+  ),
+  "array" -> Json.arr(
+    "arr_string"
+  )
+)
+```
+
+You can attempt to patch any value at any level.  
+The `patch` method will returns either a Json value result of the patch or a JsUndefined if the patch failed.
+
+```scala
+json.patch(Test(Root / "string", "string"))
+// JsObject(...)
+
+json.patch(Test(Root / "unknown", "string"))
+// JsUndefined
+
+json.patch(Test(Root / "string", 1))
+// JsUndefined
+```
+
+You can add values at any level.
+
+```scala
+json.patch(
+  Add(Root / "string", "foobar"),
+  Add(Root / "object" / "test", "test"),
+  Add(Root / "array" / 0, "test")
+)
+// Json.obj(
+//   "string" -> "foobar",
+//   "int" -> 1024,
+//   "long" -> 1024L,
+//   "float" -> 1.0F,
+//   "double" -> 1.0D,
+//   "big_decimal" -> BigDecimal("1"),
+//   "boolean" -> true,
+//   "bytes" -> ByteString("bytes"),
+//   "object" -> Json.obj(
+//     "string" -> "obj_string",
+//     "test" -> "test"
+//   ),
+//   "array" -> Json.arr(
+//     "test",
+//     "arr_string"
+//   )
+// )
+```
+
+You can replace values at any level.
+
+```scala
+json.patch(
+  Replace(Root / "string", "foobar"),
+  Replace(Root / "object" / "string", "test"),
+  Replace(Root / "array" / 0, "test")
+)
+// Json.obj(
+//   "string" -> "foobar",
+//   "int" -> 1024,
+//   "long" -> 1024L,
+//   "float" -> 1.0F,
+//   "double" -> 1.0D,
+//   "big_decimal" -> BigDecimal("1"),
+//   "boolean" -> true,
+//   "bytes" -> ByteString("bytes"),
+//   "object" -> Json.obj(
+//     "string" -> "test"
+//   ),
+//   "array" -> Json.arr(
+//     "test"
+//   )
+// )
+```
+
+You can remove values at any level.
+
+```scala
+json.patch(
+  Remove(Root / "notExist", mustExist = false),
+  Remove(Root / "object",),
+  Remove(Root / "array")
+)
+// Json.obj(
+//   "string" -> "foobar",
+//   "int" -> 1024,
+//   "long" -> 1024L,
+//   "float" -> 1.0F,
+//   "double" -> 1.0D,
+//   "big_decimal" -> BigDecimal("1"),
+//   "boolean" -> true,
+//   "bytes" -> ByteString("bytes")
+// )
+```
+
+You can move values at any level.
+
+```scala
+json.patch(Move(Root / "object" / "string", Root / "string"))
+// Json.obj(
+//   "string" -> "obj_string",
+//   "int" -> 1024,
+//   "long" -> 1024L,
+//   "float" -> 1.0F,
+//   "double" -> 1.0D,
+//   "big_decimal" -> BigDecimal("1"),
+//   "boolean" -> true,
+//   "bytes" -> ByteString("bytes"),
+//   "object" -> Json.obj(),
+//   "array" -> Json.arr(
+//     "arr_string"
+//   )
+// )
+```
+
+#### Mutate
+
+You can also mutate the Json AST by using `mutate` context.
+This method allow you to navigate at a given path and then mutate the resulting value.
+To simplify, we will use the following json object.
+
+```scala
+import io.techcode.streamy.util.json._
+
+# Object example
+val json = Json.obj(
+  "string" -> "string",
+  "int" -> 1024,
+  "long" -> 1024L,
+  "float" -> 1.0F,
+  "double" -> 1.0D,
+  "big_decimal" -> BigDecimal("1"),
+  "boolean" -> true,
+  "bytes" -> ByteString("bytes"),
+  "object" -> Json.obj(
+    "string" -> "obj_string"
+  ),
+  "array" -> Json.arr(
+    "arr_string"
+  )
+)
+```
+
+You can mutate any value at any level.
+
+```scala
+json.mutate[Int](Root / "int") { ref => ref / 2 }
+// Json.obj(
+//   "string" -> "string",
+//   "int" -> 512,
+//   "long" -> 1024L,
+//   "float" -> 1.0F,
+//   "double" -> 1.0D,
+//   "big_decimal" -> BigDecimal("1"),
+//   "boolean" -> true,
+//   "bytes" -> ByteString("bytes"),
+//   "object" -> Json.obj(
+//     "string" -> "obj_string"
+//   ),
+//   "array" -> Json.arr(
+//     "arr_string"
+//   )
+// )
+```
 
 ## Parser
 

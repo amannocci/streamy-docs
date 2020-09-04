@@ -22,6 +22,10 @@ custom plugins.
 
 ## Features
 
+* Powerful and extensible plugin system.
+* Painless event processing.
+* Provide back-pressure end to end.
+* Use industry standards and is interoperable with Reactive Streams.
 
 
 ## Why Not ...?
@@ -35,5 +39,13 @@ TODO
 TODO
 
 ### Rsyslog
+
+TODO
+
+### Hindsight
+
+TODO
+
+### Vector
 
 TODO
