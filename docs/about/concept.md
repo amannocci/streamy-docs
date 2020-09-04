@@ -17,18 +17,19 @@ To manipulate Json, Streamy proposes its own Json AST because Json is the base o
 The base type in Streamy is MaybeJson, and has several subtypes representing different Json types :
 - JsUndefined : An undefined Json value. It is useful to avoid Option[Json]  pattern in some case and for performance reason.
 - JsDefined : A defined Json value.
+    - JsValue : A Json value.
+        - JsNumber : A Json number, represented has several subtypes.
+            - JsInt : A Json Int.
+            - JsLong : A Json Long.
+            - JsFloat : A Json Float.
+            - JsDouble: A Json Double.
+            - JsBigDecimal: A Json Big Decimal.
+        - JsString : A Json String.
+        - JsBoolean: A Json Boolean.
+        - JsNull: A Json Null.
+        - JsBytes : A Json Bytes.
     - JsObject : A Json object, represented as a Map.
     - JsArray : A Json array, represented as an Array.
-    - JsString : A Json String.
-    - JsBoolean: A Json Boolean.
-    - JsNull: A Json Null.
-    - JsBytes : A Json Bytes.
-    - JsNumber : A Json number, represented has several subtypes.
-        - JsInt : A Json Int.
-        - JsLong : A Json Long.
-        - JsFloat : A Json Float.
-        - JsDouble: A Json Double.
-        - JsBigDecimal: A Json Big Decimal.
 
 ### Reading and writing json
 
