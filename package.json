@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/amannocci/streamy#readme",
   "devDependencies": {
-    "vuepress": "^1.5.3"
+    "vuepress": "^1.7.1"
   }
 }
